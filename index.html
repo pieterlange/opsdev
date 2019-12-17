@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Use with reveal.js 3.8.0 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Kubernietes</title>
+
+    <link rel="stylesheet" href="reveal.js-3.8.0/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js-3.8.0/css/theme/black.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="reveal.js-3.8.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.8.0/css/print/pdf.css' : 'reveal.js-3.6.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides" >
+        <section>
+          <section>
+            <h1>OPSDEV</h1>
+          </section>
+          <section>
+            <h3>whoami</h3>
+            <div id="left">
+              <ul>
+                <li>Pieter Lange</li>
+                <li>IT infrastructure technician</li>
+                <li>p.lange@fullstaq.com</li>
+                <li><a href="https://github.com/pieterlange/">github.com/pieterlange</a></li>
+                <li class="fragment" style="font-family: 'Lucida Console', Monaco, monospace;">eat, sleep, <img src="img/k8sparty.gif" style="border:none; background:none;width:10%;"/>, repeat</li>
+                <li class="fragment"><a href="https://twitter.com/kuberpieters/">@kuberpieters</a></li>
+              </ul>
+            </div>
+            <div id="right">
+              <img src="img/profile.jpg" style="border:none; background:none;width:60%;"/><br/>
+            </div>
+          </section>
+          <section>
+            <h1>Quick poll</h1>
+            <h3>What is your profession?</h3>
+            <div id="left">
+              <img class="fragment" data-fragment-index="1" src="img/profession.gif" width="80%" style="border:none; background:none;"/>
+            </div>
+            <div id="right">
+              <ul>
+                <li class="fragment" data-fragment-index="2">Developer</li>
+                <li class="fragment" data-fragment-index="3">Operations</li>
+                <li class="fragment" data-fragment-index="4">Quality assurance</li>
+                <li class="fragment" data-fragment-index="5">Management/support</li>
+                <li class="fragment" data-fragment-index="6">"Other"</li>
+              <ul>
+            </div>
+          </section>
+          <section>
+            <h3>Who can be called for production issues?</h3>
+            <ul>
+              <li class="fragment" data-fragment-index="2">Right now?</li>
+            </ul>
+            <div id="right">
+              <img class="fragment" data-fragment-index="1" src="img/middle-man.png" width="60%" style="border:none; background:none;"/>
+            </div>
+          </section>
+          <section>
+            <h1>What is OPS?</h1>
+            <ul>
+              <li class="fragment">baby don't hurt me</li>
+              <li class="fragment">don't hurt me</li>
+              <li class="fragment">no more</li>
+            </ul>
+          </section>
+
+          <section>
+            <a href="https://www.meetup.com/Kubernetes-Addicts-Support-Group/">kubernetes addicts support group</a><br/>
+            <img src="img/k8saddicts.jpg" style="border:none; background:none;width:65%;"/><br/>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Historical context</h1>
+          </section>
+          <section>
+            <h3>Observations and stereotypes</h3>
+          </section>
+          <section>
+            <h2>Developers</h2>
+            <div id="left">
+              <ul>
+                <li class="fragment">Artists &amp; makers</h2>
+                <li class="fragment">New&amp;shiney over old and known</h2>
+                <li class="fragment">Closer to business drivers</li>
+                <li class="fragment">Experiment &amp; iterate</li>
+                <li class="fragment">"We <b>CREATE</b> the value in the business!"</li>
+              </ul>
+            </div>
+            <div id="right">
+              <img src="img/unicorn.png" style="border:none; background:none;width:70%;"/><br/>
+            </div>
+          </section>
+          <section>
+            <h2>Operations</h2>
+            <div id="left">
+              <img src="img/devsecops.png" style="border:none; background:none;width:90%;"/><br/>
+            </div>
+            <div id="right">
+							<ul>
+								<li class="fragment">Department of "no"</h2>
+								<li class="fragment">Slower iterations, "lazy"</li>
+								<li class="fragment">Interrupt driven/responsive</li>
+								<li class="fragment">Conservative AF or chronic martyrs</li>
+								<li class="fragment">"We <b>PROTECT</b> the value in the business!"</li>
+							</ul>
+            </div>
+          </section>
+          <section>
+            <h3>How did we end up here</h3>
+            <div id="left">
+              <ul>
+                <li class="fragment">Increasing complexity</li>
+                <li class="fragment">Specialization</li>
+                <li class="fragment">Things are changing fast<div class="fragment">and are speeding up</div></li>
+              </ul>
+            </div>
+            <div id="right">
+              <img src="img/gromit.gif" style="border:none; background:none;width:70%;"/><br/>
+            </div>
+          </section>
+          <section>
+            <h3>Not yesterdays' OPS anymore</h3>
+            <ul>
+              <li class="fragment">Infra as code</li>
+              <li class="fragment">Puppet, Chef, Ansible, Terraform, Docker, ...</li>
+              <li class="fragment">CI/CD</li>
+              <li class="fragment">"OPS has learned how to code"</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Developers</h3>
+            <ul>
+              <li class="fragment">Bear production responsibility</li>
+              <li class="fragment">Restructured apps to fit new infra (12factor, serverless)</li>
+              <li class="fragment">Do their own release management</li>
+              <li class="fragment">"Product development has learned how to ops?"</li>
+            </ul>
+          </section>
+          <section data-background="img/devops.gif">
+          </section>
+          <section>
+            <h3>We still have very different contexts</h3>
+            <ul>
+              <li class="fragment">Ops: aggregates</li>
+              <li class="fragment">Dev: specifics</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>The ops things affecting developers</h1>
+          </section>
+          <section>
+            <h2>Upgrades</h2>
+            <ul>
+              <li class="fragment">Rolling</li>
+              <li class="fragment">Schema management</li>
+              <li class="fragment">Static assets?</li>
+              <li class="fragment">Verify correctness</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Correctness?!</h3>
+            <ul>
+              <li class="fragment">RED, USE</li>
+              <li class="fragment"><i>"But i ran my tests"</i></li>
+              <li class="fragment">Observability</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Errors</h3>
+						<a href="https://sentry.io"><img class="fragment" src="img/sentry.png" width="10%" style="border:none; background:none;"/></a>
+          </section>
+          <section>
+            <h3>Rails logging is ..</h3>
+            <h5 class="fragment">problematic</h5>
+            <div class="fragment">
+							<pre style="width:80%; align: center;">
+								<code data-trim>
+Started GET "/" for 127.0.0.1 at 2012-03-10 14:28:14 +0100
+Processing by HomeController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+  Rendered layouts/_assets.html.erb (2.0ms)
+  Rendered layouts/_top.html.erb (2.6ms)
+  Rendered layouts/_about.html.erb (0.3ms)
+  Rendered layouts/_google_analytics.html.erb (0.4ms)
+Completed 200 OK in 79ms (Views: 78.8ms | ActiveRecord: 0.0ms)
+								</code>
+							</pre>
+            </div>
+
+          </section>
+          <section>
+            <h3>Use structured logs</h3>
+            <ul>
+              <li class="fragment"><a href="https://github.com/roidrage/lograge">lograge</a></li>
+              <li class="fragment"><i>Taming Rails' Default Request Logging</i></li>
+            </ul>
+            <pre style="width:40%; align: center;">
+              <code data-trim>
+{
+  "method": "GET",
+  "path": "/jobs/833552.json",
+  "format": "json",
+  "controller": "JobsController",
+  "action": "show",
+  "status": 200,
+  "duration": 58.33,
+  "view": 40.43,
+  "db": 15.26
+}
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Expose metrics</h3>
+            <ul>
+              <li class="fragment">For platform automation</li>
+              <li class="fragment">For service level indicators</li>
+              <li class="fragment">So ops doesn't have to do it at the network level</li>
+            </ul>
+            <div class=="fragment">ex: prometheus <a href="https://github.com/prometheus/client_ruby">client_ruby</a></div>
+          </section>
+          <section>
+            <h3>CI/CD</h3>
+						<img class="fragment" src="img/brent.gif" width="60%" style="border:none; background:none;"/>
+          </section>
+          <section>
+            <h3>Now for some bold claims</h3>
+            <ul>
+              <li class="fragment">ITIL wasn't entirely useless</li>
+							<ul class="fragment">
+                <li>SDLC</li>
+                <li>Asset management/CMDB</li>
+              </ul>
+              <li class="fragment">Supply chain management is going to !@#% us up</li>
+              <li class="fragment">Product selection is hard</li>
+              <div class="fragment">and NIH is stall rampant in IT</div>
+              <li class="fragment">KISS</li>
+              <li class="fragment">Trust is created by giving out trust yourself</li>
+            </ul>
+          </section>
+        </section>
+
+          <section data-transition="fade-out">
+            <h1>thank you</h1>
+            <br class="fragment">Ask me about <a href="https://kubernietes.nl">kubernietes.nl</a></br>
+            <br/>
+            <img src="img/fullstaq.png" style="border:none; background:none;width:60%;"/><br/>
+          </section>
+      </div>
+    </div>
+
+    <script src="reveal.js-3.8.0/lib/js/head.min.js"></script>
+    <script src="reveal.js-3.8.0/js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        width: "90%",
+        margin: 0.05,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'reveal.js-3.8.0/plugin/markdown/marked.js' },
+          { src: 'reveal.js-3.8.0/plugin/markdown/markdown.js' },
+          { src: 'reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: 'reveal.js-3.8.0/plugin/tagcloud/tagcloud.js', async: true },
+          { src: 'reveal.js-3.8.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      var resizeSlide = function() {
+        Reveal.configure({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      }
+
+    </script>
+  </body>
+</html>
